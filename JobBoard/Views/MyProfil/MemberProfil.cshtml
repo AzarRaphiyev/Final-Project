@@ -1,0 +1,39 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "MemberProfil";
+}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">@Model.FullName</h1>
+                <div class="custom-breadcrumbs">
+                    <a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+                    <span class="text-white"><strong>@Model.FullName</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="site-section" id="next-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 blog-content">
+
+                <h2 class="mb-4">@Model.FullName</h2>
+                <p><img style="width:600px" src="~/uploads/users/@Model.Image" alt="Image" class="img-fluid rounded"></p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-0 font-weight-bold">Usernname</p>
+                <p class="mb-4"> @Model.UserName  </p>
+                <p class="mb-0 font-weight-bold">Email</p>
+                <p class="mb-4">@Model.Email</p>
+                <p class="mb-0 font-weight-bold">Cv</p>
+               <a href="~/uploads/member/cv/@Model.Cv">Show CV</a>
+            </div>
+        </div>
+    </div>
+</section>

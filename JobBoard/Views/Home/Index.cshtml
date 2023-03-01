@@ -1,0 +1,282 @@
+﻿@model IndexViewModel
+@{
+	ViewData["Title"] = "Home Page";
+	int jobCount = 0;
+	int count = 0;
+	int countcompany=0;
+	int countMemer = 0;
+	int countTeam = 0;
+	int countJobs = 0;
+	foreach (var item in Model.Companies)
+	{
+		countcompany++;
+	}
+	foreach (var item in Model.Members)
+	{
+		countMemer++;
+	}
+	foreach (var item in Model.teams)
+	{
+		countTeam++;
+	}
+	foreach (var item in Model.jobs)
+	{
+		jobCount++;
+	}
+	foreach (var item in Model.jobs)
+	{
+		countJobs++;
+	}
+}
+<section class="home-section section-hero overlay bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+	<div class="container">
+		<div class="row align-items-center justify-content-center">
+			<div class="col-md-12">
+				<div class="mb-5 text-center">
+					<h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+				</div>
+				<form asp-action="Index" asp-controller="Home" method="get" class="search-jobs-form">
+					<div class="row mb-5">
+						<div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+						@*	<input asp-for="job.Title" class="form-control form-control-lg" placeholder="Job title, Company...">*@
+						<div class="d-none">
+								@Html.RadioButton("searchBy","Name",true)
+						</div>
+
+							@Html.TextBox("search",null, new { @class ="form-control form-control-lg"})
+
+						</div>
+						<div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+							
+							<select asp-for="regionId" asp-items="@(new SelectList(ViewBag.Region,"Id","Region"))" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
+							
+							</select>
+
+							
+
+
+						</div>
+						<div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+							<select class="selectpicker" asp-for="typeid" asp-items="@(new SelectList(ViewBag.Type,"Id","Type"))" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
+							
+							
+							</select>
+						</div>
+						<div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+							<button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<a href="#next" class="scroll-button smoothscroll">
+		<span class=" icon-keyboard_arrow_down"></span>
+	</a>
+</section>
+
+
+
+
+
+
+<section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url('../assets/images/hero_1.jpg');">
+	<div class="container">
+		<div class="row mb-5 justify-content-center">
+			<div class="col-md-7 text-center">
+				<h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
+				<p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis recusandae sequi excepturi corrupti.</p>
+			</div>
+		</div>
+		<div class="row pb-0 block__19738 section-counter">
+			<div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+				<div class="d-flex align-items-center justify-content-center mb-2">
+					<strong class="number" data-number="@countMemer">0</strong>
+				</div>
+				<span class="caption">Candidates</span>
+			</div>
+			<div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+				<div class="d-flex align-items-center justify-content-center mb-2">
+					<strong class="number" data-number="@countJobs">0</strong>
+				</div>
+				<span class="caption">Jobs Posted</span>
+			</div>
+			<div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+				<div class="d-flex align-items-center justify-content-center mb-2">
+					<strong class="number" data-number="@countTeam">0</strong>
+				</div>
+				<span class="caption">Team Members</span>
+			</div>
+			<div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+				<div class="d-flex align-items-center justify-content-center mb-2">
+					<strong class="number" data-number="@countcompany">0</strong>
+				</div>
+				<span class="caption">Companies</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+<section class="site-section">
+	<div class="container">
+		<div class="row mb-5 justify-content-center">
+			<div class="col-md-7 text-center">
+				<h2 class="section-title mb-2">@jobCount Job Listed</h2>
+			</div>
+		</div>
+		<ul class="job-listings mb-5">
+
+			@foreach (var item in Model.paginatedlist)
+			{
+				count++;
+
+			<li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+					<a asp-action="details" asp-controller="job" asp-route-id="@item.Id"></a>
+				<div class="job-listing-logo">
+					<img src="~/uploads/users/@item.Company.Image" alt="Free Website Template by Free-Template.co" class="img-fluid">
+				</div>
+				<div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+					<div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+						<h2>#@count  @item.Title</h2>
+						<strong>@item.Company.Fullname</strong>
+					</div>
+					<div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+						<span class="icon-room"></span> @item.Company.Location
+					</div>
+					<div class="job-listing-meta">
+						@if (item.JobType.Type=="Full Time")
+							{
+						<span class="badge badge-success">@item.JobType.Type</span>
+							}
+							@if (item.JobType.Type == "Part Time")
+							{
+								<span class="badge badge-danger">@item.JobType.Type</span>
+							}
+					</div>
+				</div>
+			</li>
+				
+			}
+		</ul>
+		<div class="row pagination-wrap">
+			<div class="col-md-6 text-center text-md-right">
+				 <form method="get">
+
+					<div class="row pagination-wrap mt-5">
+						<div class="col-md-12 text-center ">
+							<div class="custom-pagination ml-auto">
+
+
+								@if (Model.paginatedlist.HasPrevios)
+								{
+									<a asp-action="index" asp-controller="Home" asp-route-page="@(Model.paginatedlist.Page-1)" class="prev">Prev</a>
+								}
+								<div class="d-inline-block">
+									@for (int i = 1; i < Model.paginatedlist.TotalPage; i++)
+									{
+
+										<a asp-action="index" asp-controller="Home" asp-route-page="@i" class=" @(Model.paginatedlist.Page==i ? "active" : "" )">@i</a>
+
+
+									}
+									@if (Model.paginatedlist.HasNextios)
+									{
+										<a asp-action="index" asp-controller="Home" asp-route-page="@(Model.paginatedlist.Page+1)" class="prev">Next</a>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('~/assets/images/hero_1.jpg');">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-md-8">
+				<h2 class="text-white">Looking For A Job?</h2>
+				<p class="mb-0 text-white lead">New job opportunities await! Explore the latest openings and take the next step in your career today.</p>
+			</div>
+			<div class="col-md-3 ml-auto">
+				<a asp-action="registermember" asp-controller="account" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="site-section py-4">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-12 text-center mt-4 mb-5">
+				<div class="row justify-content-center">
+					<div class="col-md-7">
+						<h2 class="section-title mb-2">To the company we supported</h2>
+						<p class="lead">We have supported various companies operating in different sectors and offering solutions for different needs.</p>
+					</div>
+				</div>
+			</div>
+			@foreach (var item in Model.Supports)
+			{
+			<div class="col-6 col-lg-3 col-md-6 text-center">
+				<img  src="~/uploads/supports/@item.Image" alt="Image" class="img-fluid logo-8">
+			</div>
+			}
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="bg-light pt-5 testimony-full">
+	<div class="owl-carousel single-carousel">
+		@foreach (var item in Model.reklams)
+		{
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-6 align-self-center text-center text-lg-left">
+					<blockquote>
+						<p>@item.Description</p>
+						<p class="text-dark"><cite> @item.Tittle </cite></p>
+					</blockquote>
+				</div>
+				<div class="col-lg-6 align-self-end text-center text-lg-right">
+					<img src="~/uploads/reklam/@item.Image" alt="Image" class="img-fluid mb-0">
+				</div>
+			</div>
+		</div>
+		}
+		
+	</div>
+</section>
+

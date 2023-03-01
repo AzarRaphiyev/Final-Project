@@ -1,0 +1,18 @@
+//Super Admin
+Email: raphiyev@gmail.com
+Password: Azer1234
+
+
+//Admin
+Email: Nihad@gmail.com
+Password: Azer2233
+
+//Member
+Email: Ilkin2003@gmail.com
+Password: Azer2233
+
+//Company
+Email: batman@gmail.com
+Password: Azer2233
+
+

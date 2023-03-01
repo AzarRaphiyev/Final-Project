@@ -1,0 +1,144 @@
+﻿@model AboutViewModel
+@{
+    ViewData["Title"] = "Index";
+    int countCompanies = 0;
+    int countTeamMember = 0;
+    int countMember = 0;
+    int countJob = 0;
+    foreach (var item in Model.jobs)
+    {
+        countJob++;
+    }
+    foreach (var item in Model.companies)
+    {
+        countCompanies++;
+
+    }
+    foreach (var item in Model.TeamMembers)
+    {
+        countTeamMember++;
+    }
+    foreach (var item in Model.members)
+    {
+        countMember++;
+    }
+
+}
+
+
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1 class="text-white font-weight-bold">About Us</h1>
+                        <div class="custom-breadcrumbs">
+                            <a href="#">Home</a> <span class="mx-2 slash">/</span>
+                            <span class="text-white"><strong>About Us</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section" style="background-image: url('images/hero_1.jpg');">
+            <div class="container">
+                <div class="row mb-5 justify-content-center">
+                    <div class="col-md-7 text-center">
+                        <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
+                <p class="lead text-white">Job Board site statistics are a valuable resource for understanding platform performance and usage. Some important indicators to watch include:</p>
+                    </div>
+                </div>
+                <div class="row pb-0 block__19738 section-counter">
+                    <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <strong class="number" data-number="@countMember">0</strong>
+                        </div>
+                        <span class="caption">Members</span>
+                    </div>
+                    <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <strong class="number" data-number="@countJob">0</strong>
+                        </div>
+                        <span class="caption">Jobs Posted</span>
+                    </div>
+                    <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <strong class="number" data-number="@countTeamMember">0</strong>
+                        </div>
+                        <span class="caption">Team Members</span>
+                    </div>
+                    <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <strong class="number" data-number="@countCompanies">0</strong>
+                        </div>
+                        <span class="caption">Companies</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+@foreach (var item in Model.miniInfoBars)
+{
+    
+        <section class="site-section pb-0">
+            <div class="container">
+                <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 @(item.order%2==0? "":"order-md-2")">
+                    <img src="~/uploads/MiniInfoBar/@item.Image" alt="Image" class="img-fluid img-shadow">
+                    </div>
+                <div class="col-lg-5 ml-auto  @(item.order%2==0? "":"order-md-1  mb-5 mb-lg-0")">
+                        <h2 class="section-title mb-3">@item.Title</h2>
+                        <p>@item.Description</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+}
+
+
+
+        <section class="site-section">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12 text-center" data-aos="fade">
+                        <h2 class="section-title mb-3">Our Team</h2>
+                    </div>
+                </div>
+
+                <div class="row align-items-center block__69944">
+
+                    @foreach (var item in Model.TeamMembers)
+            {
+                <div class="col-md-6  @(item.Order%2==0 ? "":"ml-md-auto")">
+                        <img src="~/uploads/team/@item.Image" alt="Image" class="img-fluid mb-4 rounded">
+                    </div>
+                    <div class="col-md-6">
+                        <h3>@item.Fullname</h3>
+                        <p class="text-muted">@item?.position?.Jobname</p>
+                        <p>@item.Description</p>
+                        <div class="social mt-4">
+                            @if (item.InstagramUlr!=null)
+                        {
+                            <a href="@item.InstagramUlr"><span class="icon-instagram"></span></a>
+                        }  
+                        @if (item.TwitterUrl!=null)
+                        {
+                            <a href="@item.TwitterUrl"><span class="icon-twitter"></span></a>
+                        }
+                        @if (item.FecebookUrl!=null)
+                        {
+                            <a href="@item.FecebookUrl"><span class="icon-facebook"></span></a>
+                        }
+                        @if (item.LinkedinUrl!=null)
+                        {
+                            <a href="@item.LinkedinUrl"><span class="icon-linkedin"></span></a>
+                        }
+                        </div>
+                    </div>
+            }
+                </div>
+        </section>
+

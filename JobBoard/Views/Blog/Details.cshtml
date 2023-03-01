@@ -1,0 +1,117 @@
+﻿@model BlogDitelsViewModel 
+@{
+    ViewData["Title"] = "Details";
+    int countComment = 0;
+        if (Model.Blog?.commentBlogs != null)
+        {
+    @foreach (var item in Model.Blog.commentBlogs)
+    {
+        countComment++;
+
+    }
+        }
+}
+
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="custom-breadcrumbs mb-0">
+                    <span class="text-white">Posted by</span class="text-white"> @Model.Blog.Authour.Fullname</a>
+                            <span class="mx-2 slash">&bullet;</span>
+                    <span class="text-white"><strong> @Model.Blog.Data?.ToString("dd MMMM yyyy HH:dd") </strong></span>
+                        </div>
+                        <h1 class="text-white">@Model.Blog.Title</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="site-section" id="next-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 blog-content">
+                        <h4 class="mb-4">@Model.Blog.Title</h4>
+                        <p><img src="~/uploads/blog/@Model.Blog.Image" alt="Image" class="img-fluid rounded"></p>
+                        <p>@Model.Blog.Description</p>
+
+                        <div class="pt-5">
+                            <p>Categorie: <a asp-action="index" asp-controller="Catagory" asp-route-id="@Model.Blog.CatagoryId">@Model.Blog.Catagory.CatagoryName</a></p>
+                        </div>
+               
+                        
+                        <div class="pt-5">
+                            <h3 class="mb-5">@countComment Comments</h3>
+                            <ul class="comment-list">
+
+                                @foreach (var item in Model.Blog.commentBlogs)
+                            {
+                                <li class="comment">
+                                   <div class="vcard bio">
+                                        <img src="~/uploads//users/@item.Image" alt="Image placeholder">
+                                    </div>
+                                    <div class="comment-body">
+                                        <h3>@item.Username</h3>
+                                        <div class="meta">@item.Data.ToString("dd MMMM yyyy HH:dd")</div>
+                                        <p>@item?.Description</p>
+                                    </div>
+                                </li>
+                            }
+                            </ul>
+
+                    
+                            <div class="comment-form-wrap pt-5">
+                                <h3 class="mb-5">Leave a comment</h3>
+
+                                <form method="post" class="">
+                                    <div class="form-group">
+                                        <label asp-for="CommentDescription">Message</label>
+                                     <textarea asp-for="CommentDescription" cols="30" rows="10" class="comment-text form-control"></textarea>
+                                     <span asp-validation-for="CommentDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        @if (!User.Identity.IsAuthenticated)
+                                {
+                                        <button type="submit"  disabled class="btn btn-primary btn-md" > Post Comment </button>
+                                        <p><a asp-action="login" asp-controller="account" >Login</a> to post a comment</p>
+                                }
+                                else
+                                {
+                                       @* <input  type="submit" value="Post Comment"  class="comment-submit btn btn-primary btn-md">*@
+
+                                       <button  type="submit" value="Post Comment"  class="comment-submit btn btn-primary btn-md"> Submit</button>
+                                }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+
+
+                    </div>
+                    <div class="col-lg-4 sidebar pl-lg-5">
+                        <div class="sidebar-box">
+                            <img src="~/uploads/authour/@Model.Blog.Authour.AuthourImage" alt="Image placeholder" class="img-fluid mb-4 w-50 rounded-circle">
+                            <h3>About The Author</h3>
+                            <p>@Model.Blog.Authour.Description</p>
+                    <p><a asp-action="details" asp-controller="Authour" asp-route-id=@Model.Blog.AuthourId class="btn btn-primary btn-sm">Read More</a></p>
+                        </div>
+
+                        <div class="sidebar-box">
+                            <div class="categories">
+                                <h3>Categories</h3>
+                                @foreach (var item in Model.catagories)
+                        {
+                                <li><a asp-action="index" asp-controller="Catagory" asp-route-id="@item.Id">@item.CatagoryName
+                                
+                                    </a></li>
+                        }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

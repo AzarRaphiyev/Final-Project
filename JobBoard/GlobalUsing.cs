@@ -1,0 +1,14 @@
+﻿global using JobBoard.Database;
+global using JobBoard.Models;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.EntityFrameworkCore;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Diagnostics;
+global using JobBoard.Areas.manage.ViewModels;
+global using Microsoft.AspNetCore.Authorization;
+global using System.Data;
+global using JobBoard.ViewModels;
+global using JobBoard.Helpers;

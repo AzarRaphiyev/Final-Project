@@ -1,0 +1,11 @@
+﻿@model CommentSite
+@{
+    ViewData["Title"] = "Details";
+}
+
+        <div style=" margin-top:100px;margin-bottom:250px ">  
+             <h3 style="text-align:center" >@Model.CommentatorName @Model.CommentatorSurname</h3>
+       <p style="margin-left:30px;margin-right:30px ;margin-top:40px">@Model.Comment</p>
+       <a asp-action="index" asp-controller="CommenSite" class="text-black" style="margin-left:600px;margin-top:40px" >Back to list</a>
+        </div>
+

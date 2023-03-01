@@ -1,0 +1,78 @@
+﻿@model PaginationList<Supports>
+@{
+    ViewData["Title"] = "Index";
+	int count = (Model.Page - 1) * 3;
+}
+
+<div style="margin-bottom:200px;margin-top:50px;margin-left:20px;margin-right:20px">
+	<div class="d-flex justify-content-between align-content-center">
+
+		<h3>Supports Companies:</h3>
+	 <a asp-action="create" asp-controller="SupportsCompany" class="btn btn-primary"> <i class="bi bi-plus-square-dotted"></i> </a>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Image</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+
+
+					<tr>
+						<th scope="row">@count</th>
+						<td>
+							<img style="width:150px" src="~/uploads/supports/@item.Image"/>
+							</td>
+						<td>
+						<a asp-action="update" asp-controller="SupportsCompany" asp-route-id="@item.Id" class=" text-success" style="font-size:30px"> <i class="bi bi-pencil-square"></i> </a>
+						<a asp-action="delete" asp-controller="SupportsCompany" asp-route-id="@item.Id" class="deletebtn text-danger" style="font-size:30px"> <i class="bi bi-trash3-fill"></i> </a>
+						</td>
+					</tr>
+			}
+		</tbody>
+	</table>
+
+
+	<div class="d-flex justify-content-center">
+
+		<form method="get">
+
+			<nav aria-label="...">
+				<ul class="pagination">
+					@if (Model.HasPrevios)
+					{
+							<li class="page-item ">
+							<a class="page-link" asp-action="index" asp-controller="SupportsCompany" asp-route-page="@(Model.Page-1)" tabindex="-1" aria-disabled="true">Previous</a>
+							</li>
+					}
+
+					@for (int i = 1; i < Model.TotalPage; i++)
+					{
+						<li class="page-item @(Model.Page==i ? "active" : "" )"><a class="page-link" asp-action="index" asp-controller="SupportsCompany" asp-route-page="@i">@i</a></li>
+					}
+
+
+					@if (Model.HasNextios)
+					{
+							<li class="page-item">
+							<a class="page-link" asp-action="index" asp-controller="SupportsCompany" asp-route-page="@(Model.Page+1)">Next</a>
+							</li>
+					}
+				</ul>
+			</nav>
+
+		</form>
+
+
+	</div>
+
+
+
+</div>

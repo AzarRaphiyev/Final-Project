@@ -1,0 +1,55 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+}
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Members</h1>
+                <div class="custom-breadcrumbs">
+                    <a asp-action="index" asp-controller="home">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="container" style="margin-bottom:300px;margin-top:100px">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Cv</th>
+             
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>
+                        <img style="width:70px;height:70px" src="~/uploads/users/@item.Image"/>
+                    </td>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td><a href="~/uploads/member/cv/@item.Cv">Show CV</a></td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+

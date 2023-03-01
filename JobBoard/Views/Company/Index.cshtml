@@ -1,0 +1,63 @@
+﻿@model PaginationList<Company>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Our Blog</h1>
+                <div class="custom-breadcrumbs">
+                    <a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+                    <span class="text-white"><strong>Companies</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a asp-action="details" asp-controller="company" asp-route-id="@item.Id"><img src="~/uploads/users/@item.Image" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a asp-action="details" asp-controller="blog" asp-route-id="@item.Id" class="text-black">@item.Fullname</a></h3>
+                </div>
+            }
+
+
+        </div>
+        <form method="get">
+
+            <div class="row pagination-wrap mt-5">
+                <div class="col-md-12 text-center ">
+                    <div class="custom-pagination ml-auto">
+                        @if (Model.HasPrevios)
+                        {
+                            <a asp-action="index" asp-controller="company" asp-route-page="@(Model.Page-1)" class="prev">Prev</a>
+                        }
+                        <div class="d-inline-block">
+                            @for (int i = 1; i < Model.TotalPage; i++)
+                            {
+
+                                <a asp-action="index" asp-controller="company" asp-route-page="@i" class=" @(Model.Page==i ? "active" : "" )">@i</a>
+
+
+                            }
+                            @if (Model.HasNextios)
+                            {
+                                <a asp-action="index" asp-controller="company" asp-route-page="@(Model.Page+1)" class="prev">Next</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</section>
+

@@ -1,0 +1,21 @@
+﻿@model JobType
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="mx-5">
+
+    <form asp-controller="JobType" asp-action="Update" method="post" >
+        <div class="mb-3">
+            <label asp-for="Type" class="form-label">Type</label>
+            <input class="form-control" asp-for="Type">
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+
+
+</div>
+

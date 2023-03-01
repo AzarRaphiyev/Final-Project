@@ -1,0 +1,105 @@
+﻿@model CompanyViewModel
+@{
+    ViewData["Title"] = "Details";
+    int relationjobCount = 0;
+    foreach (var item in Model.RelationJobs)
+    {
+        relationjobCount++;
+    }
+}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h1 class="text-white font-weight-bold">@Model.Company.Fullname</h1>
+						<div class="custom-breadcrumbs">
+					<a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+							<span class="text-white"><strong>@Model.Company.Fullname</strong></span>
+						</div>
+					</div>
+				</div>
+			</div>
+</section>
+
+
+<section class="site-section" id="next-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 blog-content">
+                <h2 class="mb-4">@Model.Company.Slogan</h2>
+                <p><img style="width:600px" src="~/uploads/users/@Model.Company.Image" alt="Image" class="img-fluid rounded"></p>
+                <p>@Model.Company.Description</p>
+            </div>
+            <div class="col-md-4">
+
+                            <p class="mb-0 font-weight-bold">Location</p>
+							<p class="mb-4"> @Model.Company.Location  </p>
+							<p class="mb-0 font-weight-bold">Email</p>
+							<p class="mb-4">@Model.Company.Email</p>
+							<div class="footer-social">
+								@if (Model.Company.InstagramUrl!=null)
+					{
+						<a href="@Model.Company.InstagramUrl"><span class="icon-instagram"></span></a>
+						
+					}
+					@if (Model.Company.FecebookUrl!=null)
+					{
+						<a href="@Model.Company.FecebookUrl"><span class="icon-facebook"></span></a>
+						
+					}
+					@if (Model.Company.LinkedinUrl!=null)
+					{
+						<a href="@Model.Company.LinkedinUrl"><span class="icon-linkedin"></span></a>
+						
+					}
+					@if (Model.Company.TwitterUrl!=null)
+					{
+							<a href="@Model.Company.TwitterUrl"><span class="icon-twitter"></span></a>
+						
+					}
+						</div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+ 
+
+
+
+<section class="site-section" id="next">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-7 text-center">
+                <h2 class="section-title mb-2">@relationjobCount Related Jobs</h2>
+            </div>
+        </div>
+        <ul class="job-listings mb-5">
+            @foreach (var item in Model.RelationJobs)
+            {
+                <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                    <a asp-action="details" asp-controller="job" asp-route-id="@item.Id"></a>
+                    <div class="job-listing-logo">
+                        <img src="~/uploads/users/@item.Company.Image" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                        <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                            <h2>@item.Title</h2>
+                            <strong>@item.Company.Fullname</strong>
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                            <span class="icon-room"></span> @item.Company.Location
+                        </div>
+                        <div class="job-listing-meta">
+                            <span class="badge badge-success">@item.JobType.Type</span>
+                        </div>
+                    </div>
+                </li>
+
+            }
+        </ul>
+       
+    </div>
+</section>

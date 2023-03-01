@@ -1,0 +1,99 @@
+﻿@model JobBoard.Models.Company
+
+@{
+    ViewData["Title"] = "Edit";
+}
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Edit your Company</h1>
+                        <div class="custom-breadcrumbs">
+                            <a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+                            <span class="text-white"><strong></strong>Company Edit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<div style="margin-left:50px;margin-right:50px;margin-bottom:200px;margin-top:100px">
+
+	<h1>Edit  </h1>
+
+	<h4>Company</h4>
+	<hr />
+	<div class="row">
+		<div class="col-md-12">
+			<form asp-action="Edit" enctype="multipart/form-data">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<input type="hidden" asp-for="Id" />
+				<div class="form-group">
+					<label asp-for="Fullname" class="control-label"></label>
+					<input asp-for="Fullname" class="form-control" />
+					<span asp-validation-for="Fullname" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Location" class="control-label"></label>
+					<input asp-for="Location" class="form-control" />
+					<span asp-validation-for="Location" class="text-danger"></span>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-12">
+						<label class="text-black" asp-for="Description">Description</label>
+						<textarea asp-for="Description" cols="30" rows="7" class="form-control" placeholder="The maximum can be 3000 characters..."></textarea>
+						<span class="text-danger" asp-validation-for="Description"></span>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<label class="text-black" asp-for="InstagramUrl">InstagramUrl</label>
+						<input asp-for="InstagramUrl" class="form-control" placeholder="Instagram Url">
+						<span asp-validation-for="InstagramUrl" class="text-danger"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="text-black" asp-for="FecebookUrl">FecebookUrl</label>
+						<input asp-for="FecebookUrl" class="form-control" placeholder="Fecebook Url">
+						<span asp-validation-for="FecebookUrl" class="text-danger"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="text-black" asp-for="LinkedinUrl">LinkedinUrl</label>
+						<input asp-for="LinkedinUrl" class="form-control" placeholder="Linkedin Url">
+						<span asp-validation-for="LinkedinUrl" class="text-danger"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="text-black" asp-for="TwitterUrl">TwitterUrl</label>
+						<input asp-for="TwitterUrl" class="form-control" placeholder="Twitter Url">
+						<span asp-validation-for="TwitterUrl" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<label class="text-black" asp-for="Slogan">Slogan</label>
+						<input asp-for="Slogan" class="form-control" placeholder="Slogan">
+						<span asp-validation-for="Slogan" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="ImageFile" class="control-label"></label>
+					<input asp-for="ImageFile" class="form-control" />
+					<span asp-validation-for="ImageFile" class="text-danger"></span>
+					<img style="width:150px;margin-top:30px" src="~/uploads/users/@Model.Image"/>
+				</div>
+				<div class="form-group" style="margin-left:700px">
+					<input type="submit" value="Save" class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+</div>
+
+

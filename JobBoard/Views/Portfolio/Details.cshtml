@@ -1,0 +1,97 @@
+﻿@model PortfolioDetailsViewModel
+@{
+	ViewData["Title"] = "Details";
+}
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7">
+				<h1 class="text-white font-weight-bold">@Model.PortfolioItem.Title</h1>
+				<div class="custom-breadcrumbs">
+					<a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+					<a asp-action="index" asp-controller="portfolio">Portfolio</a> <span class="mx-2 slash">/</span>
+					<span class="text-white"><strong>@Model.PortfolioItem.Title</strong></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="site-section pb-0 portfolio-single" id="next-section">
+	<div class="container">
+		<div class="row mb-5 mt-5">
+			<div class="col-lg-8">
+				@foreach (var item in Model.PortfolioItem.portfolioItemImages.Where(x=>x.IsPoster==null))
+				{
+				<figure>
+						<a href="~/uploads/portfolio/@item.Images" data-fancybox="gallery"><img src="~/uploads/portfolio/@item.Images" alt="Image" class="img-fluid"></a>
+				</figure>
+					
+				}
+			</div>
+			<div class="col-lg-4 ml-auto h-100 jm-sticky-top">
+				<div class="mb-4">
+					<h3 class="mb-4 h4 border-bottom">Project Description</h3>
+					<p class="mb-0">@Model.PortfolioItem.Description</p>
+				</div>
+				<div class="row mb-4">
+					<div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+						<strong class="d-block text-black">Client</strong>
+						@Model.PortfolioItem.Client
+					</div>
+					<div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+						<strong class="d-block text-black">Year Started</strong>
+						@Model.PortfolioItem.YearStarted.ToString("yyyy")
+					</div>
+					<div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+						<strong class="d-block text-black mb-3">Website URL</strong>
+						<a href="@Model.PortfolioItem.WebUrl" class="btn btn-outline-primary border-width-2">Visit Website</a>
+					</div>
+				</div>
+				<div class="block__87154 mb-0">
+					<blockquote>
+						<p>@Model.PortfolioItem.Team.Description</p>
+					</blockquote>
+					<div class="block__91147 d-flex align-items-center">
+						<figure class="mr-4"><img src="~/uploads/team/@Model.PortfolioItem.Team.Image" alt="Image" class="img-fluid"></figure>
+						<div>
+							<h3>@Model.PortfolioItem.Team.Fullname</h3>
+							<span class="position">@Model.PortfolioItem.Team.position</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="site-section bg-light">
+	<div class="container">
+		<div class="row mb-5">
+			<div class="col-12 text-center" data-aos="fade">
+				<h2 class="section-title mb-3">Happy Candidates Says</h2>
+			</div>
+		</div>
+		<div class="row">
+			@foreach (var item in Model.commentSites)
+			{
+				
+			<div class="col-lg-6">
+				<div class="block__87154 bg-white rounded">
+					<blockquote>
+						<p>@item.Comment</p>
+					</blockquote>
+					<div class="block__91147 d-flex align-items-center">
+						<figure class="mr-4"><img src="~/uploads/commentsite/@item.Commentatorİmage" alt="Image" class="img-fluid"></figure>
+						<div>
+							<h3>@item.CommentatorSurname @item.CommentatorName</h3>
+							<span class="position">@item.Data</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			}
+		</div>
+	</div>
+</section>

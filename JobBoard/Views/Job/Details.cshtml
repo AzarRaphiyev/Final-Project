@@ -1,0 +1,213 @@
+﻿@model JobDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+    int relationjobCount = 0;
+    foreach (var item in Model.RelationJobs)
+    {
+        relationjobCount++;
+    }
+
+}
+
+
+
+        <section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1 class="text-white font-weight-bold">@Model.Job.Title</h1>
+                        <div class="custom-breadcrumbs">
+                            <a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+                            <span class="text-white"><strong>@Model.Job.Title </strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="site-section">
+            <div class="container">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-8 mb-4 mb-lg-0">
+                        <div class="d-flex align-items-center">
+                            <div class="border p-2 d-inline-block mr-3 rounded">
+                                <img style="width:110px" src="~/uploads/users/@Model.Job.Company.Image" alt="Image">
+                            </div>
+                            <div>
+                                <h2>@Model.Job.Title</h2>
+                                <div>
+                                    <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>@Model.Job.Company.Fullname</span>
+                                    <span class="m-2"><span class="icon-room mr-2"></span>@Model.Job.Company.Location</span>
+                                    @if (Model.Job.JobType.Type=="Full Time")
+                            {
+                                    <span class="m-2"><span class="icon-clock-o mr-2 text-success"></span>@Model.Job.JobType.Type</span>
+                                
+                            }
+
+                            else
+                            {
+                                    <span class="m-2"><span class="icon-clock-o mr-2 text-danger"></span>@Model.Job.JobType.Type</span>
+                            }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+            {
+                 <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-6">
+                        <a id="FavoriBtn" asp-action="AddtoWhisList" asp-controller="job" asp-route-id="@Model.Job.Id" class="btn btn-block btn-light btn-md"><span class="icon-heart-o mr-2 text-danger"></span>Save Job</a>
+                            </div>
+                            @if (User.IsInRole("Member"))
+                        {
+                             <div class="col-6">
+                                 @if (Model.Job.IsFull==false)
+                                {
+                                <a id="applybtn" asp-action="apply" asp-controller="jobseeker" asp-route-jobId="@Model.Job.Id" class=" btn btn-block btn-primary btn-md">Apply Now</a>
+                                }
+                            </div>
+                        }
+                        </div>
+                    </div>
+            }
+                   
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="mb-5">
+                            <figure class="mb-5"><img src="~/uploads/job/@Model.Job.Image" alt="Image" class="img-fluid rounded"></figure>
+                            <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Description</h3>
+                            <p>@Model.Job.Description</p>
+                        </div>
+                        <div class="mb-5">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Responsibilities</h3>
+                                <p>@Model.Job.Responsibilities</p>
+                        </div>
+                        <div class="mb-5">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-book mr-3"></span>Education + Experience</h3>
+                            <p>@Model.Job.EduExperience</p>
+                        </div>
+                        <div class="mb-5">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-turned_in mr-3"></span>Other Benifits</h3>
+                            <p>@Model.Job.OutherBenifits</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="bg-light p-3 border rounded mb-4">
+                            <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
+                            <ul class="list-unstyled pl-3 mb-0">
+                                <li class="mb-2"><strong class="text-black">Published on:</strong> @Model.Job.PublishedOn?.ToString("MMMM dd, yyyy")</li>
+                                <li class="mb-2"><strong class="text-black">Region:</strong> @Model.Job.JobRegion.Region</li>
+                                <li class="mb-2"><strong class="text-black">Employment Status:</strong>@Model.Job.JobType.Type</li>
+                                <li class="mb-2"><strong class="text-black">Experience:</strong> @Model.Job.Experince year(s)</li>
+                                <li class="mb-2"><strong class="text-black">Job Location:</strong> @Model.Job.Company.Location</li>
+                                <li class="mb-2"><strong class="text-black">Salary:</strong> $@Model.Job.MinSalary - $@Model.Job.MaxSalary</li>  
+                                <li class="mb-2"><strong class="text-black">Gender:</strong> @Model.Job.Gender.GenderType</li>
+                                <li class="mb-2"><strong class="text-black">Aviable:</strong> @Model.Job.IsFull</li>
+                                <li class="mb-2"><strong class="text-black">Vacancy:</strong> @Model.Job.Vacancy</li>
+                                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> @Model.Job.ApplicationDeadline.ToString("MMMM dd,yyyy")</li>
+                            </ul>
+                        </div>
+                        <div class="bg-light p-3 border rounded">
+                            <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
+                            <div class="px-3">
+                                @if (Model.Job.Company.InstagramUrl!=null)
+                        {
+                                <a href="@Model.Job.Company.InstagramUrl" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-instagram"></span></a>
+                        } 
+                                @if (Model.Job.Company.FecebookUrl!=null)
+                        {
+                                <a href="@Model.Job.Company.FecebookUrl" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                        } 
+                                @if (Model.Job.Company.LinkedinUrl!=null)
+                        {
+                                <a href="@Model.Job.Company.LinkedinUrl" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                        } 
+                                @if (Model.Job.Company.TwitterUrl!=null)
+                        {
+                                <a href="@Model.Job.Company.TwitterUrl" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                        }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="site-section" id="next">
+            <div class="container">
+                <div class="row mb-5 justify-content-center">
+                    <div class="col-md-7 text-center">
+                        <h2 class="section-title mb-2">@relationjobCount Related Jobs</h2>
+                    </div>
+                </div>
+                <ul class="job-listings mb-5">
+                    @foreach (var item in Model.RelationJobs)
+            {
+                    <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                        <a asp-action="details" asp-controller="job" asp-route-id="@item.Id"></a>
+                        <div class="job-listing-logo">
+                            <img src="~/uploads/users/@item.Company.Image" alt="Image" class="img-fluid">
+                        </div>
+                        <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <h2>@item.Title</h2>
+                                <strong>@item.Company.Fullname</strong>
+                            </div>
+                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                <span class="icon-room"></span> @item.Company.Location
+                            </div>
+                            <div class="job-listing-meta">
+                                <span class="badge badge-success">@item.JobType.Type</span>
+                            </div>
+                        </div>
+                    </li>
+                
+            }
+                </ul>
+            </div>
+        </section>
+
+
+
+<section class="bg-light pt-5 testimony-full">
+    <div class="owl-carousel single-carousel">
+        @foreach (var item in Model.reklams)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 align-self-center text-center text-lg-left">
+                        <blockquote>
+                            <p>@item.Description</p>
+                            <p class="text-dark"><cite> @item.Tittle </cite></p>
+                        </blockquote>
+                    </div>
+                    <div class="col-lg-6 align-self-end text-center text-lg-right">
+                        <img src="~/uploads/reklam/@item.Image" alt="Image" class="img-fluid mb-0">
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+
+
+<script>
+    
+    let applybtn = document.getElementById("applybtn");
+applybtn.addEventListener("click", function (e) {
+    e.preventDefault;
+        alert("You Have Applied");
+})
+
+
+    let FavoriBtn = document.getElementById("FavoriBtn");
+    FavoriBtn.addEventListener("click", function (e) {
+        e.preventDefault;
+        alert("You can see favorites");
+    })
+
+</script>

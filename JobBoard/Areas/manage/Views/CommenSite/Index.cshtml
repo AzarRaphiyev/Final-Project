@@ -1,0 +1,84 @@
+﻿@model PaginationList<CommentSite>
+@{
+	ViewData["Title"] = "Index";
+	int count = 0;
+}
+
+
+<div style="margin-bottom:200px;margin-top:50px;margin-left:20px;margin-right:20px">
+
+	<h1>Comments:</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Fullname</th>
+				<th scope="col">Image</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+
+
+				<tr>
+					<th scope="row">@count</th>
+					<td><a asp-action="Details" asp-controller="CommenSite" asp-route-id="@item.Id">@item.CommentatorName @item.CommentatorSurname </a></td>
+					<td>
+						<img style="width:150px" src="~/uploads/commentsite/@item.Commentatorİmage"/>
+						</td>
+					<td>
+						@if (item.IsFavorıte==false)
+						{
+							<a asp-action="FavoriteComment" asp-controller="CommenSite" asp-route-id="@item.Id" class="text-black" style="font-size:30px"> <i class="bi bi-heart"></i> </a>
+						}
+						else
+						{
+							<a asp-action="FavoriteComment" asp-controller="CommenSite" asp-route-id="@item.Id" class="text-danger" style="font-size:30px"><i class="bi bi-heart-fill"></i> </a>
+						}
+						<a asp-action="delete" asp-controller="CommenSite" asp-route-id="@item.Id" class="deletebtn text-danger" style="font-size:30px"> <i class="bi bi-trash3-fill"></i> </a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<div class="d-flex justify-content-center">
+
+		<form method="get">
+
+			<nav aria-label="...">
+				<ul class="pagination">
+					@if (Model.HasPrevios)
+					{
+						<li class="page-item ">
+							<a class="page-link" asp-action="index" asp-controller="CommenSite" asp-route-page="@(Model.Page-1)" tabindex="-1" aria-disabled="true">Previous</a>
+						</li>
+					}
+
+					@for (int i = 1; i < Model.TotalPage; i++)
+					{
+						<li class="page-item @(Model.Page==i ? "active" : "" )"><a class="page-link" asp-action="index" asp-controller="CommenSite" asp-route-page="@i">@i</a></li>
+					}
+
+
+					@if (Model.HasNextios)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-action="index" asp-controller="CommenSite" asp-route-page="@(Model.Page+1)">Next</a>
+						</li>
+					}
+				</ul>
+			</nav>
+
+		</form>
+
+
+	</div>
+
+
+
+</div>

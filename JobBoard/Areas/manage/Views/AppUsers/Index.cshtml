@@ -1,0 +1,101 @@
+﻿@model PaginationList<AppUser>
+@{
+	ViewData["Title"] = "Index";
+	int count = (Model.Page - 1) * 3;
+}
+
+
+<div class="mx-5">
+	<div class="d-flex justify-content-between align-content-center">
+
+		<h3>Users:</h3>
+	</div>
+	<table class="table table-hover" style="margin-top:10px">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Username</th>
+				<th scope="col">Fullname</th>
+				<th scope="col">Email</th>
+				<th scope="col">Role</th>
+				<th scope="col">Enable?</th>
+				<th scope="col">Image</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+
+					<tr>
+						<th scope="row">@count</th>
+						<td>@item.UserName</td>
+						<td>@item.FullName</td>
+						<td>@item.Email</td>
+						<td class="text-dark">@item.Role</td>
+						@if (item.Enabled==true)
+					{
+						<td class="text-success" >@item.Enabled</td>
+					}else
+					{
+						<td class="text-danger" >@item.Enabled</td>
+							
+					}
+						<td>
+							<img style="width:100px" src="~/uploads/users/@item.Image"/>
+						</td>
+						<td>
+							
+							@if (item.Role!="SuperAdmin")
+						{
+							@if (item.Enabled==false)
+						    {
+							<a asp-action="Activateuser" asp-controller="AppUsers" asp-route-id="@item.Id" class="btn btn-outline-warning"> <i class="bi bi-star-fill"></i> </a>
+						    }
+							<a asp-action="delete" asp-controller="AppUsers" asp-route-id="@item.Id" class="deletebtn btn btn-outline-danger"> <i class="fas fa-trash"></i> </a>
+						}
+						else
+						{
+								
+						}
+						</td>
+					</tr>
+			}
+
+		</tbody>
+	</table>
+
+	<div class="d-flex justify-content-center">
+
+		<form method="get">
+
+			<nav aria-label="...">
+				<ul class="pagination">
+					@if (Model.HasPrevios)
+					{
+							<li class="page-item ">
+							<a class="page-link" asp-action="index" asp-controller="AppUsers" asp-route-page="@(Model.Page-1)" tabindex="-1" aria-disabled="true">Previous</a>
+							</li>
+					}
+
+					@for (int i = 1; i < Model.TotalPage; i++)
+					{
+						<li class="page-item @(Model.Page==i ? "active" : "" )"><a class="page-link" asp-action="index" asp-controller="AppUsers" asp-route-page="@i">@i</a></li>
+					}
+
+
+					@if (Model.HasNextios)
+					{
+							<li class="page-item">
+							<a class="page-link" asp-action="index" asp-controller="AppUsers" asp-route-page="@(Model.Page+1)">Next</a>
+							</li>
+					}
+				</ul>
+			</nav>
+
+		</form>
+
+
+	</div>
+</div>

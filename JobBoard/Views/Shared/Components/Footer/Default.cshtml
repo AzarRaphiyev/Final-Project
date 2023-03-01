@@ -1,0 +1,55 @@
+﻿@model FooterViewModel
+
+<footer class="site-footer">
+	<a href="#top" class="smoothscroll scroll-top">
+		<span class="icon-keyboard_arrow_up"></span>
+	</a>
+	<div class="container">
+		<div class="row mb-5">
+			<div class="col-6 col-md-3 mb-4 mb-md-0">
+				<h3>Services</h3>
+				<ul class="list-unstyled">
+					@foreach (var item in Model.servicesSites)
+					{
+					<li><a asp-action="details" asp-controller="services" asp-route-id="@item.Id">@item.Name</a></li>
+					}
+				</ul>
+			</div>
+			<div class="col-6 col-md-3 mb-4 mb-md-0">
+				<h3>First Companies</h3>
+				<ul class="list-unstyled">
+					@foreach (var item in Model.companies)
+					{
+						<li><a asp-action="Details" asp-controller="company"  asp-route-id="@item.Id">@item.Fullname</a></li>
+					}
+				</ul>
+			</div>
+			<div class="col-6 col-md-3 mb-4 mb-md-0">
+				<h3>Pages</h3>
+				<ul class="list-unstyled">
+					<li><a asp-action="index" asp-controller="about">About</a></li>
+					<li><a asp-action="index" asp-controller="services">Services</a></li>
+					<li><a asp-action="create" asp-controller="Commitsite">Comment</a></li>
+					<li><a asp-action="create" asp-controller="Contact">Contact us</a></li>
+				</ul>
+			</div>
+			<div class="col-6 col-md-3 mb-4 mb-md-0">
+				<div class="footer-social">
+					<ul class="list-unstyled">
+						<li><strong class="text-white">Addres</strong></a></li>
+						<li class="text-white">@Model.settings.FirstOrDefault(x=>x.Key=="Address")?.Value</a></li>
+						<li><strong class="text-white">Phone</strong></a></li>
+						<li class="text-white">@Model.settings.FirstOrDefault(x=>x.Key=="Phone")?.Value</a></li>
+						<li><strong class="text-white">Email Address</strong></a></li>
+						<li class="text-white">@Model.settings.FirstOrDefault(x=>x.Key=="Email Address")?.Value</a></li>
+					</ul>
+					<a href="@Model.settings.FirstOrDefault(x=>x.Key=="FooterFecebookUrl")?.Value"><span class="icon-facebook"></span></a>
+					<a href="@Model.settings.FirstOrDefault(x=>x.Key=="FooterTwitterUrl")?.Value"><span class="icon-twitter"></span></a>
+					<a href="@Model.settings.FirstOrDefault(x=>x.Key=="FooterInstagramUrl")?.Value"><span class="icon-instagram"></span></a>
+					<a href="@Model.settings.FirstOrDefault(x=>x.Key=="FooterLinkedinUrl")?.Value"><span class="icon-linkedin"></span></a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

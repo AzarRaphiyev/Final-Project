@@ -1,0 +1,71 @@
+﻿@model List<Job>
+@{
+    ViewData["Title"] = "Wishlist";
+    int count = 0;
+    foreach (var item in Model)
+    {
+        count++;
+    }
+
+
+}
+
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Whislist</h1>
+                <div class="custom-breadcrumbs">
+                    <a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+                    <span class="text-white"><strong>Whislist</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="site-section" style="z-index:1" id="next">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-7 text-center">
+                <h2 class="section-title mb-2">@count Job Listed</h2>
+            </div>
+        </div>
+        <ul class="job-listings mb-5">
+            @foreach (var item in Model)
+            {
+                count++;
+                <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                    <a asp-action="details" asp-controller="job" asp-route-id="@item.Id"></a>
+                    <div class="job-listing-logo">
+                        <img src="~/uploads/job/@item.Image" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                    </div>
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                        <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                            <h2>#@count @item.Title</h2>
+                            <strong>@item.Company.Fullname</strong>
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                            <span class="icon-room"></span> @item.Company.Location
+                        </div>
+                        <div class="job-listing-meta">
+
+                            @if (item.JobType.Type == "Full Time")
+                            {
+                                <span class="badge badge-success">@item.JobType.Type</span>
+                            }
+                            @if (item.JobType.Type == "Part Time")
+                            {
+                                <span class="badge badge-danger">@item.JobType.Type</span>
+                            }
+
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>

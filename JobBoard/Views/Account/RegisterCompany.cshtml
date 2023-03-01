@@ -1,0 +1,127 @@
+﻿@model CompanyRegisterViewModel
+
+@{
+    ViewData["Title"] = "RegisterCompany";
+}
+
+
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7">
+				<h1 class="text-white font-weight-bold">Register as a company</h1>
+				<div class="custom-breadcrumbs">
+					<a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+					<span class="text-white"><strong></strong>Sing Up</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="site-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 mb-5">
+				<h2 class="mb-4">Register as a company on JobBoard</h2>
+
+
+
+				<form method="post" enctype="multipart/form-data" class="p-4 border rounded">
+					<div class="row">
+						<div class="col-md-6 ">
+							<label class="text-black" asp-for="CompanyName">CompanyName</label>
+							<input asp-for="CompanyName" class="form-control" placeholder="Name">
+							<span asp-validation-for="CompanyName" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label class="text-black" asp-for="CompanyUserName">Username</label>
+							<input asp-for="CompanyUserName" class="form-control" placeholder="Username">
+							<span asp-validation-for="CompanyUserName" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 ">
+							<label class="text-black" asp-for="CompanyEmail">Email</label>
+							<input asp-for="CompanyEmail" class="form-control" placeholder="Email address">
+							<span asp-validation-for="CompanyEmail" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label class="text-black" asp-for="CompanyLocation">Location</label>
+							<input asp-for="CompanyLocation" class="form-control" placeholder="Location">
+							<span asp-validation-for="CompanyLocation" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label class="text-black" asp-for="Description">Description</label>
+							<textarea asp-for="Description" cols="30" rows="7" class="form-control" placeholder="The maximum can be 3000 characters..."></textarea>
+							<span class="text-danger" asp-validation-for="Description"></span>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-3">
+							<label class="text-black" asp-for="InstagramUrl">InstagramUrl</label>
+							<input asp-for="InstagramUrl" class="form-control" placeholder="Instagram Url">
+							<span asp-validation-for="InstagramUrl" class="text-danger"></span>
+						</div>
+						<div class="col-md-3">
+							<label class="text-black" asp-for="FecebookUrl">FecebookUrl</label>
+							<input asp-for="FecebookUrl" class="form-control" placeholder="Fecebook Url">
+							<span asp-validation-for="FecebookUrl" class="text-danger"></span>
+						</div>
+						<div class="col-md-3">
+							<label class="text-black" asp-for="LinkedinUrl">LinkedinUrl</label>
+							<input asp-for="LinkedinUrl" class="form-control" placeholder="Linkedin Url">
+							<span asp-validation-for="LinkedinUrl" class="text-danger"></span>
+						</div>
+						<div class="col-md-3">
+							<label class="text-black" asp-for="TwitterUrl">TwitterUrl</label>
+							<input asp-for="TwitterUrl" class="form-control" placeholder="Twitter Url">
+							<span asp-validation-for="TwitterUrl" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<label class="text-black" asp-for="Slogan">Slogan</label>
+							<input asp-for="Slogan" class="form-control" placeholder="Slogan">
+							<span asp-validation-for="Slogan" class="text-danger"></span>
+						</div>
+					</div>
+							
+					<div class="row">
+						<div class="col-md-12">
+							<label class="text-black" asp-for="ImageFile">ImageFile</label>
+							<input asp-for="ImageFile" class="form-control" placeholder="Image">
+							<span asp-validation-for="ImageFile" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 ">
+							<label class="text-black" asp-for="Password">Password</label>
+							<input asp-for="Password" class="form-control" placeholder="Password">
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label class="text-black" asp-for="ConfirePassword">Repeat Password</label>
+							<input asp-for="ConfirePassword" class="form-control" placeholder="Repeat Password">
+							<span asp-validation-for="ConfirePassword" class="text-danger"></span>
+						</div>
+					</div>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="row form-group" style="margin-top:10px">
+						<div class="col-md-12">
+							<input type="submit" value="Sign Up" class="btn px-4 btn-primary text-white">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+

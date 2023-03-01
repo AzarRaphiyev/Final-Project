@@ -1,0 +1,18 @@
+﻿@model Supports
+@{
+    ViewData["Title"] = "Update";
+}
+
+<form method="post" asp-action="update" enctype="multipart/form-data">
+
+<div class="form-group col-3 mx-5">
+                <label class="d-md-flex justify-content-md-center " asp-for="ImageFile">Poster Image<span class="text-danger">*</span></label>
+                <div id="Posterdropzone">
+                    <div>Poster image</div>
+                    <input asp-for=ImageFile type="file" accept="image/png,image/jpeg, application/pdf" />
+                </div>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

@@ -1,0 +1,119 @@
+﻿@model PortfolioItem
+@{
+	ViewData["Title"] = "Update";
+}
+
+<h1 style="margin-left:40px">Update a Portfolio Item</h1>
+<div class="mx-5">
+	<form method="post" asp-action="update" enctype="multipart/form-data">
+
+
+		<div class="row">
+
+			<div class="mb-3 col-md-6">
+				<label asp-for="Title" class="form-label">Tittle</label>
+				<input class="form-control" asp-for="Title" placeholder="Write Your Portfolio Title">
+				<span asp-validation-for="Title" class="text-danger"></span>
+			</div>
+			<div class="mb-3 col-md-3">
+
+				<label asp-for="TeamId" class="form-select">Team Members</label>
+				<select asp-for="TeamId" class="form-select">
+					@foreach (Team item in ViewBag.Team)
+					{
+						<option value="@item.Id">@item.Fullname</option>
+					}
+				</select>
+				<span asp-validation-for="Team" class="text-danger"></span>
+
+			</div>
+			<div class="mb-3 col-md-3">
+
+				<label asp-for="poerfolioCatagoriesId" class="form-select">Catagory</label>
+				<select asp-for="poerfolioCatagoriesId" class="form-select">
+					@foreach (PoerfolioCatagory item in ViewBag.PortfolioCatagory)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				</select>
+				<span asp-validation-for="poerfolioCatagories" class="text-danger"></span>
+			</div>
+
+		</div>
+			
+		<div class="row">
+			<div class="mb-3 col-md-12">
+				<label asp-for="Description" class="form-label">Description</label>
+				<textarea asp-for="Description" cols="30" rows="7" class="form-control" placeholder="Write  about  portfolio here..."> </textarea>
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<div class="row">
+
+			<div class="mb-3 col-md-4">
+				<label asp-for="Client" class="form-label">Client</label>
+				<input class="form-control" asp-for="Client">
+				<span asp-validation-for="Client" class="text-danger"></span>
+			</div>
+			<div class="mb-3 col-md-4">
+				<label asp-for="Order" class="form-label">Order</label>
+				<input class="form-control" asp-for="Order">
+				<span asp-validation-for="Order" class="text-danger"></span>
+
+			</div>
+			<div class="mb-3 col-md-4">
+				<label asp-for="WebUrl" class="form-label">Web Url</label>
+				<input class="form-control" asp-for="WebUrl">
+				<span asp-validation-for="WebUrl" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<label asp-for="PosterImageFile" class="form-label">Poster Image</label>
+				<input class="form-control" asp-for="PosterImageFile">
+				<span asp-validation-for="PosterImageFile" class="text-danger"></span>
+			   <img style="width:100px;height:100px;margin-top:15px" src="~/uploads/portfolio/@Model.portfolioItemImages.FirstOrDefault(x=>x.IsPoster==true).Images" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<label asp-for="ImageFiles" class="form-label">Image File</label>
+				<input class="form-control" asp-for="ImageFiles" placeholder="Image File">
+				<span asp-validation-for="ImageFiles" class="text-danger"></span>
+
+				<div class="d-flex " style="flex-wrap:wrap;">
+
+					@foreach (var item in Model.portfolioItemImages)
+					{
+						if (item.IsPoster == null)
+						{
+							<div style="position:relative;margin-left:30px">
+								<img style="width:100px;height:100px;margin-top:15px" src="~/uploads/portfolio/@item.Images" />
+								<input name="PortfolioImageIds" value="@item.Id" type="hidden"></input>
+								<span style="position:absolute; cursor:pointer" class="text-danger deleteItemImage " > <i class="bi bi-trash-fill"></i> </span>
+							</div>
+						}
+					}
+
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+		<button type="submit" class="btn btn-primary" style="margin-top:30px;margin-bottom:30px">Update</button>
+	</form>
+</div>
+

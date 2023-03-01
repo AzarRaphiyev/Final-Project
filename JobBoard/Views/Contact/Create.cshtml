@@ -1,0 +1,119 @@
+﻿@model ContactCreateViewModel
+@{
+	ViewData["Title"] = "Create";
+}
+
+
+		<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h1 class="text-white font-weight-bold">Contact Us</h1>
+						<div class="custom-breadcrumbs">
+					<a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+							<span class="text-white"><strong>Contact Us</strong></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		
+		<section class="site-section" id="next-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 mb-5 mb-lg-0">
+						<form method="post" asp-action="Create">
+							<div class="row form-group">
+								<div class="col-md-6 mb-3 mb-md-0">
+									<label class="text-black" asp-for="contact.Name">Name</label>
+									<input asp-for="contact.Name" class="form-control">
+									<span class="text-danger" asp-validation-for="contact.Name"></span>
+								</div>
+								<div class="col-md-6">
+							<label class="text-black" asp-for="contact.Surname">Surname</label>
+							<input asp-for="contact.Surname" class="form-control">
+							<span class="text-danger" asp-validation-for="contact.Surname"></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+							<label class="text-black" asp-for="contact.Email">Email</label>
+							<input asp-for="contact.Email" class="form-control">
+							<span class="text-danger" asp-validation-for="contact.Email"></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+							<label class="text-black" asp-for="contact.Subject">Subject</label>
+							<input asp-for="contact.Subject" class="form-control">
+							<span class="text-danger" asp-validation-for="contact.Subject"></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+							<label class="text-black" asp-for="contact.Message">Message</label>
+							<textarea asp-for ="contact.Message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+							<span class="text-danger" asp-validation-for="contact.Message"></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="col-lg-5 ml-auto">
+
+
+				@foreach (ContactİnfoBar item in ViewBag.InfoBar)
+					{
+						<div class="p-4 mb-3 bg-white">
+							<p class="mb-0 font-weight-bold">Address</p>
+							<p class="mb-4"> @item.Address  </p>
+							<p class="mb-0 font-weight-bold">Phone</p>
+							<p class="mb-4">@item.PhoneNumber</p>
+							<p class="mb-0 font-weight-bold">Email Address</p>
+							<p class="mb-0">@item.Email</p>
+						</div>
+				    }
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section class="site-section bg-light">
+			<div class="container">
+				<div class="row mb-5">
+					<div class="col-12 text-center" data-aos="fade">
+						<h2 class="section-title mb-3">Happy Candidates Says</h2>
+					</div>
+				</div>
+				<div class="row">
+			@foreach (CommentSite item in ViewBag.HappyComment)
+			{
+					<div class="col-lg-6">
+						<div class="block__87154 bg-white rounded">
+							<blockquote>
+								<p>@item.Comment</p>
+							</blockquote>
+							<div class="block__91147 d-flex align-items-center">
+								<figure class="mr-4"><img src="~/uploads/commentsite/@item.Commentatorİmage" alt="Image" class="img-fluid"></figure>
+								<div>
+									<h3>@item.CommentatorSurname @item.CommentatorName</h3>
+									<span class="position">@item.Data?.ToString("dd MMMM yyyy")</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+			}
+					
+				</div>
+			</div>
+		</section>

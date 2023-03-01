@@ -1,0 +1,86 @@
+﻿@model AppUser 
+
+
+<header class="site-navbar mt-3">
+	<div class="container-fluid">
+		<div class="row align-items-center">
+			<div class="site-logo col-6"><a asp-action="index" asp-controller="home">JobBoard</a></div>
+			<nav class="mx-auto site-navigation">
+				<ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+					<li><a asp-action="index" asp-controller="home" class="nav-link active">Home</a></li>
+					<li><a asp-action="index" asp-controller="about">About</a></li>
+					<li class="has-children">
+						<a asp-action="index" asp-controller="job">Job Listings</a>
+						<ul class="dropdown">
+							@if (User.Identity.IsAuthenticated)
+							{
+								@if (User.IsInRole("Company"))
+								{
+									<li>
+									<a asp-action= "Index" asp-controller="Applicants" asp-route-username="@User.Identity.Name" class="text-danger"> Application List </a>
+									<a asp-action= "Index" asp-controller="Member" class="text-success"> Member List </a>
+									</li>
+								}
+							}
+							<li><a asp-action="index" asp-controller="company">Company List</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="services.html">Pages</a>
+						<ul class="dropdown">
+							<li><a asp-action="index" asp-controller="Services">Services</a></li>
+							<li><a asp-action="create" asp-controller="CommitSite">Comment</a></li>
+
+							<li><a asp-action="index" asp-controller="portfolio">Portfolio</a></li>
+							<li><a asp-action="index" asp-controller="Testimonials">Testimonials</a></li>
+							<li><a asp-action="index" asp-controller="faq">Frequently Ask Questions</a></li>
+						</ul>
+					</li>
+					<li><a asp-action="index" asp-controller="blog">Blog</a></li>
+					<li><a asp-action="create" asp-controller="Contact">Contact</a></li>
+					<li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
+					<li class="d-lg-none"><a asp-action="login" asp-controller="account">Log In</a></li>
+				</ul>
+			</nav>
+			<div class="right-cta-menu text-right d-flex aligin-items-center col-3">
+				<div class="ml-auto">
+					@if (User.Identity.IsAuthenticated)
+					{
+						if (User.IsInRole("Company"))
+						{
+							<a asp-action="create" asp-controller="job" class="btn btn-outline-white "><span class="mr-2 icon-add"></span>Post a Job</a>
+							<a asp-action="Edit" asp-controller="Company" asp-route-username="@User.Identity.Name" class="btn btn-primary ">  <i class="bi bi-building-fill-gear"></i> </a>
+							<a asp-action= "CompanyProfil" asp-controller="MyProfil" asp-route-username="@User.Identity.Name" class="btn btn-primary "> <i class="bi bi-person-circle"></i> </a>
+							<a asp-action="logout" asp-controller="account" class="btn btn-primary "> <i class="bi bi-box-arrow-left"></i> </a>
+							<a asp-action="Wishlist" asp-controller="home" class="btn btn-warning "> <i class="bi bi-star-fill"></i> </a>
+						}
+						if (User.IsInRole("SuperAdmin") || (User.IsInRole("Admin")))
+						{
+							<a asp-action="index" asp-controller="dashboard" asp-area="manage" class="btn btn-outline-primary ">Go Admin Panel</a>
+							<a asp-action="logout" asp-controller="account" class="btn btn-primary" ><i class="bi bi-box-arrow-left"></i></a>
+							<a asp-action="Wishlist" asp-controller="home" class="btn btn-warning "> <i class="bi bi-star-fill"></i> </a>
+						}
+
+						
+						if (User.IsInRole("Member"))
+						{
+							<a asp-action="MemberProfil" asp-controller="MyProfil" asp-route-username="@User.Identity.Name" class="btn btn-primary "> <i class="bi bi-person-circle"></i> </a>
+							<a asp-action="Edit" asp-controller="Member" asp-route-username="@User.Identity.Name" class="btn btn-outline-primary "><i class="bi bi-pencil-square"></i></a>
+							<a asp-action="logout" asp-controller="account" class="btn btn-primary "><i class="bi bi-box-arrow-left"></i></a>
+							<a asp-action="Wishlist" asp-controller="home" class="btn btn-warning "> <i class="bi bi-star-fill"></i> </a>
+						}
+					}
+					else
+					{
+					<a asp-action="login" asp-controller="account" class="btn btn-primary "><span class="mr-2 icon-lock_outline"></span>Log In</a>
+					<a asp-action="RegisterMember" asp-controller="account" class="btn btn-primary "><i class="bi bi-person-add"></i></a>
+					<a asp-action="RegisterCompany" asp-controller="account" class="btn btn-primary "><i class="bi bi-building-add"></i></a>
+							
+					}
+					
+				</div>
+				<a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+			</div>
+		</div>
+	</div>
+</header>

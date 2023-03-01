@@ -1,0 +1,78 @@
+﻿@model Team
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create a Member</h1>
+
+<form method="post" asp-action="create" enctype="multipart/form-data">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Fullname" class="form-label">Fullname</label>
+                <input asp-for="Fullname" class="form-control">
+                <span class="text-danger" asp-validation-for="Fullname"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="PositionId" class="form-select">Position</label>
+                <select asp-for="PositionId" class="form-select">
+                    @foreach (Position item in ViewBag.Position)
+                    {
+                        <option value="@item.id">@item.Jobname</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Order" class="form-label">Order</label>
+                <input asp-for="Order" class="form-control">
+                <span class="text-danger" asp-validation-for="Order"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label asp-for="InstagramUlr" class="form-label">InstagramUrl</label>
+                <input asp-for="InstagramUlr" class="form-control">
+                <span class="text-danger" asp-validation-for="InstagramUlr"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="FecebookUrl" class="form-label">FecebookUrl</label>
+                <input asp-for="FecebookUrl" class="form-control">
+                <span class="text-danger" asp-validation-for="FecebookUrl"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="TwitterUrl" class="form-label">TwitterUrl</label>
+                <input asp-for="TwitterUrl" class="form-control">
+                <span class="text-danger" asp-validation-for="TwitterUrl"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="LinkedinUrl" class="form-label">LinkedinUrl</label>
+                <input asp-for="LinkedinUrl" class="form-control">
+                <span class="text-danger" asp-validation-for="LinkedinUrl"></span>
+            </div>
+        </div>
+        <diw class="row">
+            <div class="col-md-12" style="margin-top:10px">
+                <label asp-for="Description" class="form-label">Description</label>
+                <textarea asp-for="Description">Description</textarea>
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+        </diw>
+        <diw class="row">
+            <div class="col-md-12">
+                <label asp-for="ImageFile" class="form-label">Image</label>
+                <input asp-for="ImageFile" class="form-control">
+                <span class="text-danger" asp-validation-for="ImageFile"></span>
+            </div>
+        </diw>
+
+        <div class="d-flex justify-content-center " style="margin-top:10px">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </div>
+
+
+
+</form>

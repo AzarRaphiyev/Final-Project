@@ -1,0 +1,69 @@
+﻿@model PaginationList<Position>
+@{
+	ViewData["Title"] = "Index";
+	int count = (Model.Page - 1) * 3;
+}
+<div class="mx-5">
+	<div class="d-flex justify-content-between align-content-center">
+
+		<h3>Positions:</h3>
+		<a asp-action="create" asp-controller="position" class="btn btn-primary">+Add</a>
+	</div>
+	<table class="table table-hover" style="margin-top:10px">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Job</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+				<tr>
+					<th scope="row">@count</th>
+					<td>@item.Jobname</td>
+					<td>
+						<a asp-action="update" asp-controller="position" asp-route-id="@item.id" class="btn btn-outline-primary"> <i class="bi bi-pencil-square"></i> </a>
+						<a asp-action="delete" asp-controller="position" asp-route-id="@item.id" class=" deletebtn btn btn-outline-danger"> <i class="fas fa-trash"></i> </a>
+					</td>
+				</tr>
+			}
+
+		</tbody>
+	</table>
+	<div class="d-flex justify-content-center">
+
+		<form method="get">
+
+			<nav aria-label="...">
+				<ul class="pagination">
+					@if (Model.HasPrevios)
+					{
+							<li class="page-item ">
+							<a class="page-link" asp-action="index" asp-controller="position" asp-route-page="@(Model.Page-1)" tabindex="-1" aria-disabled="true">Previous</a>
+							</li>
+					}
+
+					@for (int i = 1; i < Model.TotalPage; i++)
+					{
+						<li class="page-item @(Model.Page==i ? "active" : "" )"><a class="page-link" asp-action="index" asp-controller="position" asp-route-page="@i">@i</a></li>
+					}
+
+
+					@if (Model.HasNextios)
+					{
+							<li class="page-item">
+							<a class="page-link" asp-action="index" asp-controller="position" asp-route-page="@(Model.Page+1)">Next</a>
+							</li>
+					}
+				</ul>
+			</nav>
+
+		</form>
+
+
+	</div>
+</div>
+

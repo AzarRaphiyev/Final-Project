@@ -1,0 +1,50 @@
+﻿@model ServicesDetailsViewModel
+@{
+	ViewData["Title"] = "Details";
+}
+
+
+		<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h1 class="text-white font-weight-bold">@Model.ServicesSite.Name</h1>
+						<div class="custom-breadcrumbs">
+					<a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+							<span class="text-white"><strong>@Model.ServicesSite.Name Service </strong></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="site-section block__18514" id="next-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 mr-auto">
+						<div class="border p-4 rounded">
+							<ul class="list-unstyled block__47528 mb-0">
+
+								@for (int i = 0; i < Model.ServicesSiteList.Count; i++)
+						{
+							<li>@if (Model.ServicesSiteList[i].Name==Model.ServicesSite.Name)
+								{
+								<span class="active">@Model.ServicesSite.Name</span>
+									
+								}
+								else
+								{
+										<a asp-action="details" asp-controller="services" asp-route-id="@Model.ServicesSiteList[i].Id">@Model.ServicesSiteList[i].Name</a>
+								}</li>
+						}
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-8">
+						<span class="text-primary d-block mb-5"><span class="@Model.ServicesSite.Icon display-1"></span></span>
+						<h2 class="mb-4">@Model.ServicesSite.Name</h2>
+						<p>@Model.ServicesSite.Description</p>
+						<p><a asp-action="create" asp-controller="contact" class="btn btn-primary btn-md mt-4">Hire Us, Our Agency</a></p>
+					</div>
+				</div>
+			</div>
+		</section>

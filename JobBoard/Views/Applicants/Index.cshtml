@@ -1,0 +1,72 @@
+﻿@model List<JobSeeker>
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+}
+
+ <section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Your Applicants</h1>
+                        <div class="custom-breadcrumbs">
+                            <a asp-action="index" asp-controller="home">Home</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+<section class="container" style="margin-bottom:300px;margin-top:100px" >
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Job</th>
+      <th scope="col">Fullname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Cv</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+      <th scope="row">@count</th>
+      <td><a asp-action="details" asp-controller="job" asp-route-id="@item.JobId">@item.Job.Title</a></td>
+      <td>@item.FullName</td>
+      <td>@item.Email</td>
+      <td><a href="~/uploads/member/cv/@item.Cv">Show CV</a></td>
+      <td>
+                        <a asp-action="Accept" asp-controller="Applicants" asp-route-id="@item.Id" class="QebulEt text-success"> <i class="bi bi-check-circle-fill"></i> </a>
+
+                        <a asp-action="delete" asp-controller="Applicants" asp-route-id="@item.Id" class=" deletebtn text-danger"> <i class="bi bi-x-octagon-fill"></i>  </a>
+      </td>
+    </tr>
+            }
+  </tbody>
+</table>
+</section>
+
+
+
+<script>
+
+    let applybtn = document.getElementById("QebulEt");
+applybtn.addEventListener("click", function (e) {
+    e.preventDefault;
+        alert("You have already accepted it");
+})
+
+
+   
+
+</script>
+
+

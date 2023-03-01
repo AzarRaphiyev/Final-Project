@@ -1,0 +1,66 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h3>Update blog</h3>
+
+<form method="post" asp-action="update" enctype="multipart/form-data">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-4">
+				<label asp-for="Title" class="form-label">Title</label>
+				<input asp-for="Title" class="form-control">
+				<span class="text-danger" asp-validation-for="Title"></span>
+			</div>
+			<div class="col-md-2">
+				<label asp-for="AuthourId" class="form-select">Authour</label>
+				<select asp-for="AuthourId" class="form-select">
+					@foreach (Authour item in ViewBag.authours)
+					{
+						<option value="@item.Id">@item.Fullname</option>
+					}
+				</select>
+			</div>
+			<div class="col-md-2">
+				<label asp-for="CatagoryId" class="form-select">CatagorIES</label>
+				<select asp-for="CatagoryId" class="form-select">
+					@foreach (Catagory item in ViewBag.catagory)
+					{
+						<option value="@item.Id">@item.CatagoryName</option>
+					}
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label asp-for="order" class="form-label">Order</label>
+				<input asp-for="order" class="form-control">
+				<span class="text-danger" asp-validation-for="order"></span>
+			</div>
+
+		</div>
+		<diw class="row">
+			<div class="col-md-12" style="margin-top:10px">
+				<label asp-for="Description" class="form-label">Description</label>
+				<textarea asp-for="Description" cols="30" rows="10" class="form-control">Description</textarea>
+				<span class="text-danger" asp-validation-for="Description"></span>
+			</div>
+		</diw>
+		<diw class="row">
+			<div class="col-md-12">
+				<label asp-for="ImageFile" class="form-label">Image</label>
+				<input asp-for="ImageFile" class="form-control">
+				<span class="text-danger" asp-validation-for="ImageFile"></span>
+			</div>
+		</diw>
+
+		<div class="d-flex justify-content-center " style="margin-top:10px">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+
+	</div>
+
+
+</form>
+
+

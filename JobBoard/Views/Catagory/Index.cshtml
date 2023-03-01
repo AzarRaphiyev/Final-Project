@@ -1,0 +1,43 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Catagory</h1>
+                <div class="custom-breadcrumbs">
+                    <a asp-action="index" asp-controller="home">Home</a> 
+                        @for (int i = 1; i < Model.Count; i++)
+                        {
+                        <strong>@Model[i].Catagory.CatagoryName</strong>
+                        }
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a asp-action="details" asp-controller="blog" asp-route-id="@item.Id"><img src="~/uploads/blog/@item.Image" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a asp-action="details" asp-controller="blog" asp-route-id="@item.Id" class="text-black">@item.Title</a></h3>
+                    <div>@item.Data<span class="mx-2">|</span> <span>@item.Catagory.CatagoryName</span></div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+

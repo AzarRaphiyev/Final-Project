@@ -1,0 +1,151 @@
+﻿@model Job
+@{
+	ViewData["Title"] = "Create";
+}
+
+
+
+		<section class="section-hero overlay inner-page bg-image" style="background-image: url('../assets/images/hero_1.jpg');" id="home-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h1 class="text-white font-weight-bold">Post A Job</h1>
+						<div class="custom-breadcrumbs">
+					<a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+							<span class="text-white"><strong>Post a Job</strong></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		<section class="site-section">
+			<div class="container">
+				<div class="row align-items-center mb-5">
+					<div class="col-lg-8 mb-4 mb-lg-0">
+						<div class="d-flex align-items-center">
+							<div>
+								<h2>Post A Job</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-5">
+					<div class="col-lg-12">
+						<form asp-action="create" method="post" enctype="multipart/form-data">
+							<h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
+							<div class="form-group">
+								<label asp-for="ImageFile">Upload Featured Image</label> <br>
+								<label asp-for="ImageFile" class="btn btn-primary btn-md btn-file">
+									Browse File<input asp-for="ImageFile" hidden>
+								</label>
+						<span asp-validation-for="ImageFile" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Title">Job Title</label>
+								<input  class="form-control" asp-for="Title" placeholder="Product Designer">
+						<span asp-validation-for="Title" class="text-danger"></span>
+							</div>
+					<div class="form-group">
+						<label asp-for="ApplicationDeadline">Deadline Time</label>
+						<input class="form-control" asp-for="ApplicationDeadline" placeholder="Deadline">
+						<span asp-validation-for="ApplicationDeadline" class="text-danger"></span>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<label asp-for="MinSalary" >Minimum Salary</label>
+							<input class="form-control" asp-for="MinSalary" placeholder="Minimum">
+							<span asp-validation-for="MinSalary" class="text-danger"></span>
+						</div>
+						<div class="col-md-4">
+							<label asp-for="MaxSalary">Max Salary</label>
+							<input class="form-control" asp-for="MaxSalary" placeholder="Max salary">
+							<span asp-validation-for="MaxSalary"class="text-danger"></span>
+						</div>
+						<div class="col-md-4">
+							<label asp-for="Order">Order</label>
+							<input class="form-control" asp-for="Order" placeholder="Order">
+							<span asp-validation-for="Order" class="text-danger"></span>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label asp-for="Experince">Experience</label>
+							<input class="form-control" asp-for="Experince" placeholder="Experience">
+							<span asp-validation-for="Experince" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="Vacancy">Vacancy</label>
+							<input class="form-control" asp-for="Vacancy" placeholder="Vacansy">
+							<span asp-validation-for="Vacancy" class="text-danger"></span>
+						</div>
+					</div>
+					
+							<div class="form-group">
+								<label asp-for="JobRegion">Job Region</label>
+
+						    <select class="selectpicker border rounded" asp-for="JobRegionId" asp-items="@(new SelectList(ViewBag.Region,"Id","Region"))" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
+						          
+								</select>
+						<span asp-validation-for="JobRegion" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="JobType">Job Type</label>
+						<select class="selectpicker border rounded" asp-for="JobTypeId" asp-items="@(new SelectList(ViewBag.Type,"Id","Type"))" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
+						</select>
+						<span asp-validation-for="JobType" class="text-danger"></span>
+							</div>
+					         <div class="form-group">
+						<label asp-for="Gender">Job Genre</label>
+
+						<select class="selectpicker border rounded" asp-for="GenderId" asp-items="@(new SelectList(ViewBag.Genre,"Id","GenderType"))" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
+							</select>
+						<span asp-validation-for="Gender" class="text-danger"></span>
+						
+					</div>
+							<div class="form-group">
+								<label asp-for="Description">Job Description</label>
+						        <textarea asp-for="Description" cols="30" rows="7" class="form-control" placeholder="Write  job description here..."> </textarea>
+								<span asp-validation-for="Description" class="text-danger"></span>
+							</div>
+					<div class="form-group">
+						<label asp-for="Responsibilities">Job Responsibilities</label>
+						<textarea asp-for="Responsibilities" cols="30" rows="7" class="form-control" placeholder="Write  job responsibilities   here..."> </textarea>
+						<span asp-validation-for="Responsibilities" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+								<label asp-for="EduExperience">Education + Experiences </label>
+						        <textarea asp-for="EduExperience" cols="30" rows="7" class="form-control" placeholder="Write  Job Education and Experiences   here..."> </textarea>
+								<span asp-validation-for="EduExperience" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+						<label asp-for="OutherBenifits">Outher Benifits</label>
+						<textarea asp-for="OutherBenifits" cols="30" rows="7" class="form-control" placeholder="Write  Outher Benifits here..."> </textarea>
+						<span asp-validation-for="OutherBenifits" class="text-danger"></span>
+							</div>
+
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="row align-items-center mb-5" style="margin-left:40px">
+						<div class="col-lg-4 ml-auto">
+							<div class="row" style="margin-top:10px">
+								<div class="col-6">
+
+								</div>
+								<div class="col-6" >
+									<button asp-action="create" type="submit" class="btn btn-block btn-primary btn-md">Save Job</button>
+								</div>
+							</div>
+						</div>
+					</div>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+		</section>
+		

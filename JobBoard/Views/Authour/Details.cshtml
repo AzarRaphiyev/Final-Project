@@ -1,0 +1,63 @@
+﻿@model AuthourDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/assets/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+               <div class="row">
+                    <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">@Model.Authour.Fullname</h1>
+                        <div class="custom-breadcrumbs">
+                            <a asp-action="index" asp-controller="home">Home</a> <span class="mx-2 slash">/</span>
+                            <span class="text-white"><strong>About @Model.Authour.Fullname</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="site-section" id="next-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 blog-content">
+                        <h4 class="mb-4">@Model.Authour.Fullname</h4>
+                        <p><img src="~/uploads/authour/@Model.Authour.AuthourImage" alt="Image" class="img-fluid rounded"></p>
+                        <h2>Authour Story:</h2>
+                        <p>@Model.Authour.AuthourStory</p>
+                       
+                       
+
+                    </div>
+                    
+                    <div class="col-lg-4 sidebar pl-lg-5">
+                        <div class="sidebar-box">
+                            <h3>About The Author</h3>
+                            <p>@Model.Authour.Description</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <h2>Relation Blogs</h2>
+            </div>
+
+            <div class="mx-5">    
+                
+                <div class="row mb-5">
+                    <div style="margin-left:20px;margin-right:20px">   
+        @foreach (var item in Model.RelationBlogs)
+        {
+                     <div class="col-md-6 col-lg-4 mb-5">
+                            <a asp-action="details" asp-controller="blog" asp-route-id="@item.Id"><img src="~/uploads/blog/@item.Image" alt="Image" class="img-fluid rounded mb-4"></a>
+                        <h3><a asp-action="details" asp-controller="blog" asp-route-id="@item.Id" class="text-black">@item.Title</a></h3>
+                           
+                        </div>
+        }
+                    </div>
+
+
+                </div>  
+       
+        </section>
+
+
