@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SJxdVGV12ZCB3uJte0b447oA7Kvrs8rMPq07RXtf2yI=",
+  "Hash": "afmSpyK/k1eeDaLScQZVPZjSXlhCzurz12Y+g1kOi7k=",
   "Source": "JobBoard",
   "BasePath": "_content/JobBoard",
   "Mode": "Default",
@@ -33318,6 +33318,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\commentsite\\7d145d2d-62a7-4688-b30f-179d73d87ad2Pride 2021 _ Squarespace.png"
+    },
+    {
+      "Identity": "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\wwwroot\\uploads\\commentsite\\befbc5d2-0081-49e5-96e0-7035dae94ff5ağ qara.png",
+      "SourceId": "JobBoard",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\wwwroot\\",
+      "BasePath": "_content/JobBoard",
+      "RelativePath": "uploads/commentsite/befbc5d2-0081-49e5-96e0-7035dae94ff5ağ qara.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\commentsite\\befbc5d2-0081-49e5-96e0-7035dae94ff5ağ qara.png"
     },
     {
       "Identity": "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\wwwroot\\uploads\\commentsite\\bfbe05c1-5f89-4071-8c0f-454c0ceac043Roger Alves - Pinterest – SAVEE.png",

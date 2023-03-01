@@ -30,7 +30,7 @@
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
 			Console.WriteLine($"{nameof(DeleteExpiredUpJobs)} is stoped");
-
+	
 			throw new NotImplementedException();
 		}
 
