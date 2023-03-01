@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MSI\\Desktop\\FinalProject\\JobBoard\\JobBoard.csproj": {}
+    "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\JobBoard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MSI\\Desktop\\FinalProject\\JobBoard\\JobBoard.csproj": {
+    "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\JobBoard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MSI\\Desktop\\FinalProject\\JobBoard\\JobBoard.csproj",
+        "projectUniqueName": "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\JobBoard.csproj",
         "projectName": "JobBoard",
-        "projectPath": "C:\\Users\\MSI\\Desktop\\FinalProject\\JobBoard\\JobBoard.csproj",
+        "projectPath": "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\JobBoard.csproj",
         "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MSI\\Desktop\\FinalProject\\JobBoard\\obj\\",
+        "outputPath": "C:\\Users\\MSI\\Desktop\\Final Project\\JobBoard\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MSI\\AppData\\Roaming\\NuGet\\NuGet.Config",

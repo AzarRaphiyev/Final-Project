@@ -1,6 +1,7 @@
-
+﻿
 
 using JobBoard.Areas.manage.services;
+using JobBoard.BackgroundService;
 using JobBoard.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,8 @@ builder.Services.AddScoped<AdminLayoutService>();
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
+builder.Services.AddHostedService<DeleteExpiredUpReklam>();
+builder.Services.AddHostedService<DeleteExpiredUpJobs>();
 builder.Services.AddTransient<IMailService, MailService>();
 
 builder.Services.AddSession(opt =>

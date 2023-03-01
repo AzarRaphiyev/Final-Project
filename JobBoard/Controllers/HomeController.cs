@@ -17,6 +17,7 @@ namespace JobBoard.Controllers
 			this.jobBoardContext = jobBoardContext;
 			this.userManager = userManager;
 		}
+
         #region Index
         public IActionResult Index(string? searchBy = null, string? search = null, int? regionId = 0, int? typeid = 0,int page=1)
 		
